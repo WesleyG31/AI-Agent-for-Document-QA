@@ -15,6 +15,9 @@ An end-to-end intelligent document assistant that allows users to upload **PDF**
 
 **[👉 Smart AI Agent for Document Q&A (Streamlit App)](https://huggingface.co/spaces/WesleyGonzales/AI-Agent-for-Document-QA)**
 
+![huggingfaces](https://github.com/user-attachments/assets/0eaa6eec-176c-4203-9453-3b86237e8e88)
+
+
 ---
 
 ## 🚀 Features
