@@ -77,8 +77,8 @@ cd AI-Agent-for-Document-QA
 
 2. (Optional) Create a virtual environment with Anaconda
 ```bash
-conda create -n document-analyst python=3.10
-conda activate document-analyst
+conda create -n AI-agent-QA python=3.10
+conda activate AI-agent-QA
 ```
 
 3. Install dependencies
