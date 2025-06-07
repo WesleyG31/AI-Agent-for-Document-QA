@@ -1,63 +1,42 @@
-# AI Document Analyst — Streamlit + RAG App + LangChain + GPT functions + HuggingFace Spaces for PDF Question Answering
+# 🤖 Smart AI Agent for Document Q&A with Real-Time Summarization and Source Highlighting
 
 ---
 
 ## Overview
 
-**AI Document Analyst** is an interactive web application that uses a **Retrieval-Augmented Generation (RAG)** pipeline to analyze PDF documents and answer user questions using large language models (LLMs).
-
-This project is fully containerized with Docker and deployable on **Hugging Face Spaces**. It supports uploading new PDFs, persistent vector database creation with **ChromaDB**, and seamless LLM integration through **OpenRouter**.
-
----
-
-## Find more information in design doc
-
-[Design Doc](https://github.com/WesleyG31/document-analyst-ai/blob/main/design_doc.md)
-
-- Assumptions and scope of work.
-- Step-by-step implementation details.
-- Discussion on failure cases and iterative improvements.
-- Experiments, decision-making process, and learning points.
-
-```
-├── desing_doc.md                   # Provide a detailed design doc 
-```
-
+An end-to-end intelligent document assistant that allows users to upload **PDF** business documents, receive a **real-time summary**, ask **natural language questions**, and view the **source snippets** from which answers are retrieved — with optional highlighting.
 ---
 
 # 📽️ Demo
 
-📽️ [Demo - YouTube](https://youtu.be/BQe3YDy7w4Q)
+📽️ [Demo - YouTube](https://youtu.be/bE4pniYSH5I)
 
 🧪 Try it live on Hugging Face:  
 
-**[👉 AI Document Analyst (Streamlit App)](https://huggingface.co/spaces/WesleyGonzales/document-analyst-ai)**
+**[👉 Smart AI Agent for Document Q&A (Streamlit App)](https://huggingface.co/spaces/WesleyGonzales/AI-Agent-for-Document-QA)**
 
 ---
 
 ## 🚀 Features
 
-- ✅ Upload and preview PDF documents with real-time page rendering
-- ✅ Convert PDF content to Markdown using `docling` and `pdf2image`
-- ✅ Intelligent text chunking using `LangChain`'s `MarkdownHeaderTextSplitter`
-- ✅ Vector storage and retrieval using `ChromaDB`
-- ✅ Embeddings powered by HuggingFace model: `BAAI/bge-small-en`
-- ✅ LLM response generation using OpenRouter API
-- ✅ Persistent storage: previously uploaded documents are remembered
-- ✅ Interactive UI built with Streamlit
+- 📄 Supports **PDF** file formats
+- 🧠 Summarizes the document on upload using Hugging Face models
+- ❓ Allows users to ask **natural language questions**
+- 🧷 Shows relevant **source snippets** per answer
+- 💡 Built with **LangChain**, **HuggingFace Transformers**, **ChromaDB**, and **Streamlit**
 
 ---
 
-## 🧠 Technologies Used
+## 📦 Tech Stack
 
-| Component                    | Tech Stack                                   |
+| Component                    | Description                                  |
 |------------------------------|----------------------------------------------|
-| Frontend UI                  | Streamlit                                    |
-| Backend LLM                  | OpenRouter                                   |
-| Embeddings                   | `BAAI/bge-small-en` via HuggingFace          |
-| Vector Store                 | `ChromaDB` with MMR search                   |
-| PDF Conversion               | `pdf2image` + `docling`                      |
-| Deployment                   | Hugging Face Spaces + Docker                 |
+| Python 3.10+                 | Programming language                                    |
+| Streamlit                  | Frontend UI framework                                     |
+| LangChain                  | RAG (Retrieval-Augmented Generation)          |
+| ChromaDB                  | Vector store for document chunks                  |
+| HuggingFace               | Embedding + Summarization models                      |
+|PyMuPDF                 | Document parsing + highlighting                  |
 
 
 ---
@@ -65,11 +44,20 @@ This project is fully containerized with Docker and deployable on **Hugging Face
 ## 📂 Project Structure
 
 ```
-├── app.py                  # Main Streamlit app
-├── rag/                    # RAG pipeline logic (RAG_MODEL)
-├── logs/                   # Logs - tries
-├── src/                    # Logger + custom exceptions
-├── tmp/vector_store/       # Persisted Chroma vector DBs 
+📁 core/                
+│ ├── chain_builder.py # LangChain RAG chain builder
+│ ├── document_loader.py # PDF/DOCX text extraction
+│ ├── rag_pipeline.py # Main RAG pipeline class
+│ ├── splitter.py # Markdown-based text splitting
+│ ├── summarizer.py # HF summarization logic
+│ └── vector_store.py # Create/load Chroma vector DB
+📁 app/
+│ └── ui_helpers.py # Streamlit PDF image display
+📁 src/
+│ ├── custom_exception.py # Custom error handling
+│ └── logger.py # Unified logger
+📁 tmp/
+│ └── vector_store/ # Local persistent vector DBs
 ├── Dockerfile              # Docker setup for HF Spaces
 ├── requirements.txt        # Python dependencies
 ├── README.md               # You're here!
@@ -83,8 +71,8 @@ This project is fully containerized with Docker and deployable on **Hugging Face
 
 1. Clone the repo
 ```bash
-git clone https://github.com/WesleyG31/document-analyst-ai
-cd document-analyst-ai
+git clone https://github.com/WesleyG31/AI-Agent-for-Document-QA
+cd AI-Agent-for-Document-QA
 ```
 
 2. (Optional) Create a virtual environment with Anaconda
@@ -103,27 +91,22 @@ pip install -e .
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 ```
 
-5. Make sure you have Poppler installed
+5. Add your OpenRouter API key
 ```bash
-https://github.com/oschwartz10612/poppler-windows/releases
-```
-
-6. Add your OpenRouter API key
-```bash
-Create an file called .env inside "rag/"
+Create an file called .env 
 OPENROUTER_API_KEY=your-key-here
 ```
 
-7. Run the python file locally
+6. Run the python file locally
 ```bash
-streamlit run application.py
+streamlit run main.py
 ```
 
 ###  HuggingFace Spaces
 
 1. No installation required. Just open the link and upload a PDF.
 ```bash
-https://huggingface.co/spaces/WesleyGonzales/document-analyst-ai
+https://huggingface.co/spaces/WesleyGonzales/AI-Agent-for-Document-QA
 PD: It's the same if you run it locally
 ```
 
@@ -139,29 +122,8 @@ In production, store the API key securely via Hugging Face Secrets or .env.
 ## 📄 Sample Outputs
 
 - ✅ Answers about your PDF document.
-
----
-
-## How It Works
-
-1. User uploads a PDF
-
-2. App:
-
-    Converts PDF → Markdown
-
-    Splits text into hierarchical chunks
-
-    Embeds chunks and stores in ChromaDB
-
-3. User asks a question
-
-4. App retrieves relevant chunks using MMR search
-
-5. Prompts an LLM with the retrieved context and user's question
-
-6. Returns and streams the answer in the UI
-
+- ✅ Summarizes the document
+- ✅ Shows relevant **source snippets** per answer
 ---
 
 ## 💼 Why This Project Matters

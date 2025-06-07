@@ -23,7 +23,7 @@ st.title("Smart AI Agent for Document Q&A with Real-Time Summarization and Sourc
 
 embedding_model = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en", model_kwargs={"device": "cpu"})
 
-uploaded_file = st.file_uploader("Upload a PDF or DOCX", type=["pdf", "docx"])
+uploaded_file = st.file_uploader("Upload a PDF or DOCX", type=["pdf"])
 if uploaded_file:
     st.sidebar.subheader(uploaded_file.name)
     base_name = uploaded_file.name.rsplit(".", 1)[0]
