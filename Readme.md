@@ -17,6 +17,7 @@ An end-to-end intelligent document assistant that allows users to upload **PDF**
 
 ![huggingfaces](https://github.com/user-attachments/assets/0eaa6eec-176c-4203-9453-3b86237e8e88)
 
+![huggingfaces_2](https://github.com/user-attachments/assets/356fa60b-0a03-4dd7-b944-c42f02b55cb7)
 
 ---
 
